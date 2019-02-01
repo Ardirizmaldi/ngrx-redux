@@ -1,0 +1,19 @@
+.clear-btn {
+  justify-content: center;
+  border: none;
+  background-color:#141414;
+  color: #ecf0f1;
+  border-radius: 100%;
+  height: 2.2em;
+  width: 2.2em;
+  font-weight: 600;
+  margin: 1em;
+
+  &:hover,
+  &:focus {
+    border: 0.2em solid #141414;
+    background: transparent;
+    color: #141414;
+    cursor: pointer;
+  }
+}

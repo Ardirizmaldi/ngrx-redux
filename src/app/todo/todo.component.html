@@ -1,0 +1,44 @@
+<div class="todo-container">
+  <h1>Todo(s)</h1>
+  <form #todoForm="ngForm" (ngSubmit)="createTodo(todoForm.value)">
+    <input
+      type="text"
+      placeholder="Add Todo..."
+      [(ngModel)]="name"
+      name="name"
+    />
+  </form>
+  <span *ngIf="todos$.length === 0" class="warn">...</span>
+  <ng-container *ngFor="let todo of (todoAsync$ | async)">
+    <div class="todo-item" [ngClass]="todo.done ? 'todo-done' : ''">
+      <span (click)="checkTodo(todo.id)">{{ todo.name }}</span>
+      <div class="button-container">
+        <button (click)="deleteTodo(todo.id)" class="clear-btn">X</button>
+        <button
+          (click)="updateTodo({ id: todo.id, name: todoUpdateForm.value.name })"
+          class="clear-btn">!</button>
+      </div>
+    </div>
+    <form
+    #todoUpdateForm="ngForm"
+    (ngSubmit)="updateTodo({id: todo.id, name: todoUpdateForm.value.name})">
+    <input
+      type="text"
+      placeholder="Edit Here ..."
+      [(ngModel)]="name"
+      name="name"
+      value="{{todo.name}}"
+    />
+  </form>
+  </ng-container>
+  <button (click)="resetTodo()" class="reset-btn">Reset</button>
+  <button
+    (click)="testUpdateTodo({ id: 'todo_1', name: 'updated todo' })"
+    class="reset-btn"
+  >
+    Test Update
+  </button>
+
+  <br />
+  
+</div>
